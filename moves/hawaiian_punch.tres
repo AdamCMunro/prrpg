@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3 uid="uid://cawrsheff5t6f"]
+
+[ext_resource type="Script" uid="uid://d1wh1a0jbsv0y" path="res://move_data.gd" id="1_7eekf"]
+
+[resource]
+script = ExtResource("1_7eekf")
+id = "hawaiian_punch"
+name = "Hawaiian Punch"
+description = "Takes 2 turns to charge. Deals {dmg} damage to a single target"
+rarity = 4
+number_of_targets = 1
+target_type = 2
+base_dmg_target = 20
+base_acc = 0.85
+charge_up = 2
+metadata/_custom_type_script = "uid://d1wh1a0jbsv0y"

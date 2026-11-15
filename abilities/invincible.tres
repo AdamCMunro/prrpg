@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityData" format=3 uid="uid://bsd38i4ths74d"]
+
+[ext_resource type="Script" uid="uid://qjfbium2xudf" path="res://ability_data.gd" id="1_8xk2i"]
+
+[resource]
+script = ExtResource("1_8xk2i")
+effect_target = 2
+stats_effect = Array[int]([3])
+modifier = Array[int]([1])
+metadata/_custom_type_script = "uid://qjfbium2xudf"

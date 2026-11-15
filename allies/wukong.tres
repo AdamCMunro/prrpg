@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://gg4wgvc420uy"]
+
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="1_nyokd"]
+
+[resource]
+script = ExtResource("1_nyokd")
+id = "wukong"
+name = "wukong"
+description = "Call me Kakarot!"
+colour = Color(1, 0.54509807, 0.08627451, 1)
+rarity = 4
+base_hp = 12
+dmg_modifier = 8
+starting_move = "hawaiian_punch"
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

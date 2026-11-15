@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3 uid="uid://dkt8fo80weo6q"]
+
+[ext_resource type="Script" uid="uid://d1wh1a0jbsv0y" path="res://move_data.gd" id="1_dvu4l"]
+
+[resource]
+script = ExtResource("1_dvu4l")
+id = "betrayal"
+name = "Betrayal"
+description = "Sets all bonds to 0. Sets tension to max. Single Target. {dmg} Damage. 10 Damage to the user."
+rarity = 4
+number_of_targets = 1
+target_type = 2
+base_dmg_target = 50
+base_dmg_self = 10
+base_acc = 0.95
+tension_cost = -1000
+bond_target = 1
+bond_cost = 8
+metadata/_custom_type_script = "uid://d1wh1a0jbsv0y"

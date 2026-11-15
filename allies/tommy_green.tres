@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://c63hmol4x080o"]
+
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="1_plhkx"]
+
+[resource]
+script = ExtResource("1_plhkx")
+id = "tommy_green"
+name = "tommy"
+description = "If dead, has a 5% chance to come back every turn. Increases by 5% for every turn this ally stays dead."
+colour = Color(0, 0.6156863, 0, 1)
+rarity = 3
+base_hp = 8
+dmg_modifier = 2
+starting_move = "zink_uyah"
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

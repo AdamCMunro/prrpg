@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3 uid="uid://c1r377tytyxxt"]
+
+[ext_resource type="Script" uid="uid://d1wh1a0jbsv0y" path="res://move_data.gd" id="1_52clv"]
+
+[resource]
+script = ExtResource("1_52clv")
+id = "the_plan"
+name = "the plan"
+description = "Takes 3 turns to charge. Low accuracy. If it hits, {dmg} damage. User takes 5 damage"
+rarity = 4
+number_of_targets = 1
+target_type = 2
+base_dmg_target = 100
+base_dmg_self = 5
+base_acc = 0.05
+charge_up = 3
+metadata/_custom_type_script = "uid://d1wh1a0jbsv0y"

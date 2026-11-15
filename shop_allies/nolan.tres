@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://ttwavotca2ia"]
+
+[ext_resource type="Script" uid="uid://qjfbium2xudf" path="res://ability_data.gd" id="1_0ud5b"]
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="2_kt4sx"]
+
+[sub_resource type="Resource" id="Resource_4w75s"]
+script = ExtResource("1_0ud5b")
+condition_type = 8
+condition_target = 4
+effect_target = 2
+stats_effect = Array[int]([4])
+modifier = Array[int]([1])
+metadata/_custom_type_script = "uid://qjfbium2xudf"
+
+[resource]
+script = ExtResource("2_kt4sx")
+id = "nolan"
+name = "nolan"
+description = "Gain 1 extra tension at the start of every round"
+colour = Color(0.7939886, 0.0032547938, 9.62615e-08, 1)
+rarity = 4
+base_hp = 25
+dmg_modifier = 5
+starting_move = "betrayal"
+ability = SubResource("Resource_4w75s")
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

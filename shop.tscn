@@ -1,0 +1,1830 @@
+[gd_scene format=3 uid="uid://d3pv8g70nrjev"]
+
+[ext_resource type="Script" uid="uid://1llbvnl65jat" path="res://shop.gd" id="1_viryw"]
+[ext_resource type="Shader" uid="uid://d1wu66vbujyym" path="res://shaders/shine.gdshader" id="2_fgaav"]
+[ext_resource type="Script" uid="uid://c8nkepqdu2425" path="res://shop_squad_slot.gd" id="4_6lah5"]
+[ext_resource type="Script" uid="uid://curwg8siqi01r" path="res://reroll.gd" id="4_fgaav"]
+[ext_resource type="FontFile" uid="uid://3yx1dvlngisr" path="res://fonts/Bungee-Regular.ttf" id="4_gmb2m"]
+[ext_resource type="Script" uid="uid://v77ochx4tic7" path="res://move_slot.gd" id="5_gmb2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kdgp"]
+shader = ExtResource("2_fgaav")
+shader_parameter/shine_color = Color(1, 1, 1, 0.25)
+shader_parameter/line_width = 0.1
+shader_parameter/angle = 0.7853982
+shader_parameter/speed = 1.0
+shader_parameter/wait_cycles = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myf4l"]
+size = Vector2(39.999996, 19.799997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmb2m"]
+size = Vector2(630, 100)
+
+[node name="Shop" type="Node2D" unique_id=195803899]
+script = ExtResource("1_viryw")
+
+[node name="AllyStock" type="Node2D" parent="." unique_id=1967192093]
+position = Vector2(1260, 400)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AllyStock" unique_id=1508593005]
+offset_left = -315.0
+offset_top = -165.0
+offset_right = -110.0
+offset_bottom = -100.0
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Allies"
+
+[node name="Squad_Slot" type="Node2D" parent="AllyStock" unique_id=986706157]
+material = SubResource("ShaderMaterial_8kdgp")
+position = Vector2(-215, 0)
+script = ExtResource("4_6lah5")
+metadata/_edit_group_ = true
+
+[node name="DescriptionBox" type="Node2D" parent="AllyStock/Squad_Slot" unique_id=89295744]
+visible = false
+position = Vector2(0, -215)
+
+[node name="BorderRect" type="ColorRect" parent="AllyStock/Squad_Slot/DescriptionBox" unique_id=537839528]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot/DescriptionBox" unique_id=1797527658]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/DescriptionBox" unique_id=1190211616]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/DescriptionBox" unique_id=1415292993]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/DescriptionBox" unique_id=1120279486]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -95.0
+offset_right = 87.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Ability"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveDescriptionBox" type="Node2D" parent="AllyStock/Squad_Slot" unique_id=196628410]
+visible = false
+position = Vector2(0, 215)
+
+[node name="BorderRect" type="ColorRect" parent="AllyStock/Squad_Slot/MoveDescriptionBox" unique_id=458520905]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot/MoveDescriptionBox" unique_id=1858045683]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/MoveDescriptionBox" unique_id=734169545]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/MoveDescriptionBox" unique_id=1536880289]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 118.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/MoveDescriptionBox" unique_id=792538454]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="MoveLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot/MoveDescriptionBox" unique_id=1462068772]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -95.0
+offset_right = 87.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Starting Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot" unique_id=99871448]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="AllyStock/Squad_Slot" unique_id=2025543983]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllyStock/Squad_Slot/Area2D" unique_id=1412850913]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_myf4l")
+
+[node name="NameLabel" type="Label" parent="AllyStock/Squad_Slot" unique_id=1216049156]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="AllyStock/Squad_Slot" unique_id=1153682256]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EmptyRect" type="ColorRect" parent="AllyStock/Squad_Slot" unique_id=1032795181]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="AllyStock/Squad_Slot" unique_id=1299543839]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="BuyButton" type="Node2D" parent="AllyStock/Squad_Slot" unique_id=1974743331]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot/BuyButton" unique_id=60522431]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34509805, 1, 0, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="AllyStock/Squad_Slot/BuyButton" unique_id=1382494000]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -38.5
+offset_right = 87.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Squad_Slot2" type="Node2D" parent="AllyStock" unique_id=494650390]
+material = SubResource("ShaderMaterial_8kdgp")
+script = ExtResource("4_6lah5")
+metadata/_edit_group_ = true
+
+[node name="DescriptionBox" type="Node2D" parent="AllyStock/Squad_Slot2" unique_id=500352827]
+visible = false
+position = Vector2(0, -215)
+
+[node name="BorderRect" type="ColorRect" parent="AllyStock/Squad_Slot2/DescriptionBox" unique_id=1104710873]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot2/DescriptionBox" unique_id=217445352]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/DescriptionBox" unique_id=1923199856]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/DescriptionBox" unique_id=1895876582]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/DescriptionBox" unique_id=1302367081]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -95.0
+offset_right = 87.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Ability"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveDescriptionBox" type="Node2D" parent="AllyStock/Squad_Slot2" unique_id=180759851]
+visible = false
+position = Vector2(0, 215)
+
+[node name="BorderRect" type="ColorRect" parent="AllyStock/Squad_Slot2/MoveDescriptionBox" unique_id=912832717]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot2/MoveDescriptionBox" unique_id=1275245522]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/MoveDescriptionBox" unique_id=1971526239]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/MoveDescriptionBox" unique_id=1066703984]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -95.0
+offset_right = 87.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Starting Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/MoveDescriptionBox" unique_id=1674740966]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 118.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot2/MoveDescriptionBox" unique_id=1929345467]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot2" unique_id=235302241]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="AllyStock/Squad_Slot2" unique_id=786153785]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllyStock/Squad_Slot2/Area2D" unique_id=2122188632]
+position = Vector2(5.722046e-06, 3.8146973e-06)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_myf4l")
+
+[node name="NameLabel" type="Label" parent="AllyStock/Squad_Slot2" unique_id=449085038]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="AllyStock/Squad_Slot2" unique_id=183118068]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "x/x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EmptyRect" type="ColorRect" parent="AllyStock/Squad_Slot2" unique_id=1324279501]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="AllyStock/Squad_Slot2" unique_id=999394141]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="BuyButton" type="Node2D" parent="AllyStock/Squad_Slot2" unique_id=1958643156]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot2/BuyButton" unique_id=476023688]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34509805, 1, 0, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="AllyStock/Squad_Slot2/BuyButton" unique_id=1645810602]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -38.5
+offset_right = 87.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Squad_Slot3" type="Node2D" parent="AllyStock" unique_id=1781539823]
+material = SubResource("ShaderMaterial_8kdgp")
+position = Vector2(215, 0)
+script = ExtResource("4_6lah5")
+metadata/_edit_group_ = true
+
+[node name="DescriptionBox" type="Node2D" parent="AllyStock/Squad_Slot3" unique_id=1351587781]
+visible = false
+position = Vector2(0, -215)
+
+[node name="BorderRect" type="ColorRect" parent="AllyStock/Squad_Slot3/DescriptionBox" unique_id=633367068]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot3/DescriptionBox" unique_id=1906078769]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/DescriptionBox" unique_id=544674455]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/DescriptionBox" unique_id=554811726]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/DescriptionBox" unique_id=1474409804]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -95.0
+offset_right = 87.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Ability"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveDescriptionBox" type="Node2D" parent="AllyStock/Squad_Slot3" unique_id=976862373]
+visible = false
+position = Vector2(0, 215)
+
+[node name="BorderRect" type="ColorRect" parent="AllyStock/Squad_Slot3/MoveDescriptionBox" unique_id=1184249280]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot3/MoveDescriptionBox" unique_id=1334308949]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/MoveDescriptionBox" unique_id=271890722]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/MoveDescriptionBox" unique_id=1819976085]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -95.0
+offset_right = 87.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Starting Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/MoveDescriptionBox" unique_id=1635843090]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 118.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="AllyStock/Squad_Slot3/MoveDescriptionBox" unique_id=534230059]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot3" unique_id=358473297]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="AllyStock/Squad_Slot3" unique_id=1847993678]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllyStock/Squad_Slot3/Area2D" unique_id=1943958815]
+position = Vector2(5.722046e-06, 3.8146973e-06)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_myf4l")
+
+[node name="NameLabel" type="Label" parent="AllyStock/Squad_Slot3" unique_id=1493648614]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="AllyStock/Squad_Slot3" unique_id=1486934698]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "x/x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EmptyRect" type="ColorRect" parent="AllyStock/Squad_Slot3" unique_id=508175724]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="AllyStock/Squad_Slot3" unique_id=1428714695]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="BuyButton" type="Node2D" parent="AllyStock/Squad_Slot3" unique_id=995278383]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="AllyStock/Squad_Slot3/BuyButton" unique_id=446454469]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34509805, 1, 0, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="AllyStock/Squad_Slot3/BuyButton" unique_id=1785368669]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -38.5
+offset_right = 87.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveStock" type="Node2D" parent="." unique_id=857841620]
+position = Vector2(1260, 700)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MoveStock" unique_id=1051930918]
+offset_left = -315.0
+offset_top = -165.0
+offset_right = -110.0
+offset_bottom = -100.0
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Moves"
+
+[node name="Move_Slot" type="Node2D" parent="MoveStock" unique_id=1891515393]
+material = SubResource("ShaderMaterial_8kdgp")
+position = Vector2(-215, -50)
+script = ExtResource("5_gmb2m")
+metadata/_edit_group_ = true
+
+[node name="DescriptionBox" type="Node2D" parent="MoveStock/Move_Slot" unique_id=1044131898]
+visible = false
+position = Vector2(0, 165)
+
+[node name="BorderRect" type="ColorRect" parent="MoveStock/Move_Slot/DescriptionBox" unique_id=1098227950]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot/DescriptionBox" unique_id=1687398297]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="MoveStock/Move_Slot/DescriptionBox" unique_id=1514139403]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="MoveStock/Move_Slot/DescriptionBox" unique_id=409046859]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_top = 74.0
+offset_right = 118.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="MoveStock/Move_Slot/DescriptionBox" unique_id=1382591094]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot" unique_id=2053178536]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="MoveStock/Move_Slot" unique_id=1164500012]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveStock/Move_Slot/Area2D" unique_id=189934828]
+position = Vector2(0, 0.5)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_myf4l")
+
+[node name="NameLabel" type="Label" parent="MoveStock/Move_Slot" unique_id=556344807]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/line_spacing = -3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="MoveStock/Move_Slot" unique_id=941630024]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="MoveStock/Move_Slot" unique_id=1750182379]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -21.5
+offset_right = 56.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="BuyButton" type="Node2D" parent="MoveStock/Move_Slot" unique_id=1691051062]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot/BuyButton" unique_id=1559128774]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34509805, 1, 0, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="MoveStock/Move_Slot/BuyButton" unique_id=763212196]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -38.5
+offset_right = 86.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.34509805, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Move_Slot2" type="Node2D" parent="MoveStock" unique_id=1525154325]
+material = SubResource("ShaderMaterial_8kdgp")
+position = Vector2(0, -50)
+script = ExtResource("5_gmb2m")
+metadata/_edit_group_ = true
+
+[node name="DescriptionBox" type="Node2D" parent="MoveStock/Move_Slot2" unique_id=164058649]
+visible = false
+position = Vector2(0, 165)
+
+[node name="BorderRect" type="ColorRect" parent="MoveStock/Move_Slot2/DescriptionBox" unique_id=602123565]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot2/DescriptionBox" unique_id=1649637161]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="MoveStock/Move_Slot2/DescriptionBox" unique_id=866824678]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="MoveStock/Move_Slot2/DescriptionBox" unique_id=694069967]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_top = 74.0
+offset_right = 118.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="MoveStock/Move_Slot2/DescriptionBox" unique_id=1242895917]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot2" unique_id=449016681]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="MoveStock/Move_Slot2" unique_id=1263556379]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveStock/Move_Slot2/Area2D" unique_id=1390237838]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_myf4l")
+
+[node name="NameLabel" type="Label" parent="MoveStock/Move_Slot2" unique_id=689044940]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/line_spacing = -3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="MoveStock/Move_Slot2" unique_id=1217744670]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="MoveStock/Move_Slot2" unique_id=1355422650]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -21.5
+offset_right = 56.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="BuyButton" type="Node2D" parent="MoveStock/Move_Slot2" unique_id=1304686671]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot2/BuyButton" unique_id=309279767]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34509805, 1, 0, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="MoveStock/Move_Slot2/BuyButton" unique_id=1911086320]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -38.5
+offset_right = 86.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.34509805, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Move_Slot3" type="Node2D" parent="MoveStock" unique_id=1295627837]
+material = SubResource("ShaderMaterial_8kdgp")
+position = Vector2(215, -50)
+script = ExtResource("5_gmb2m")
+metadata/_edit_group_ = true
+
+[node name="DescriptionBox" type="Node2D" parent="MoveStock/Move_Slot3" unique_id=789265544]
+visible = false
+position = Vector2(0, 165)
+
+[node name="BorderRect" type="ColorRect" parent="MoveStock/Move_Slot3/DescriptionBox" unique_id=298265960]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot3/DescriptionBox" unique_id=1863082704]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="MoveStock/Move_Slot3/DescriptionBox" unique_id=251016779]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="MoveStock/Move_Slot3/DescriptionBox" unique_id=2025117712]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_top = 74.0
+offset_right = 118.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="MoveStock/Move_Slot3/DescriptionBox" unique_id=669223227]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_gmb2m")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot3" unique_id=923575269]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="MoveStock/Move_Slot3" unique_id=548276027]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveStock/Move_Slot3/Area2D" unique_id=1332300475]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_myf4l")
+
+[node name="NameLabel" type="Label" parent="MoveStock/Move_Slot3" unique_id=842994837]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 101.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/line_spacing = -3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="MoveStock/Move_Slot3" unique_id=1412294411]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="MoveStock/Move_Slot3" unique_id=1723064556]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -21.5
+offset_right = 56.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="BuyButton" type="Node2D" parent="MoveStock/Move_Slot3" unique_id=861146486]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="MoveStock/Move_Slot3/BuyButton" unique_id=1449474631]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34509805, 1, 0, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="MoveStock/Move_Slot3/BuyButton" unique_id=34348427]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -38.5
+offset_right = 86.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.34509805, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reroll" type="Node2D" parent="." unique_id=1144412856]
+position = Vector2(1260, 800)
+script = ExtResource("4_fgaav")
+
+[node name="ColorRect" type="ColorRect" parent="Reroll" unique_id=360947252]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -50.0
+offset_right = 315.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.6313726, 0.25490198, 1)
+
+[node name="BuyRect" type="ColorRect" parent="Reroll" unique_id=389737374]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -50.0
+offset_right = 315.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.39215687)
+
+[node name="Area2D" type="Area2D" parent="Reroll" unique_id=1188110420]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reroll/Area2D" unique_id=1446449669]
+shape = SubResource("RectangleShape2D_gmb2m")
+
+[node name="Label" type="Label" parent="Reroll" unique_id=2017094565]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "Restock"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyLabel" type="Label" parent="Reroll" unique_id=2004881096]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_gmb2m")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Node2D" parent="." unique_id=1319947030]
+
+[node name="FirstAid" type="Node2D" parent="." unique_id=585554444]
+
+[connection signal="input_event" from="AllyStock/Squad_Slot/Area2D" to="AllyStock/Squad_Slot" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="AllyStock/Squad_Slot/Area2D" to="AllyStock/Squad_Slot" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="AllyStock/Squad_Slot/Area2D" to="AllyStock/Squad_Slot" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="AllyStock/Squad_Slot2/Area2D" to="AllyStock/Squad_Slot2" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="AllyStock/Squad_Slot2/Area2D" to="AllyStock/Squad_Slot2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="AllyStock/Squad_Slot2/Area2D" to="AllyStock/Squad_Slot2" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="AllyStock/Squad_Slot3/Area2D" to="AllyStock/Squad_Slot3" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="AllyStock/Squad_Slot3/Area2D" to="AllyStock/Squad_Slot3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="AllyStock/Squad_Slot3/Area2D" to="AllyStock/Squad_Slot3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="MoveStock/Move_Slot/Area2D" to="MoveStock/Move_Slot" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MoveStock/Move_Slot/Area2D" to="MoveStock/Move_Slot" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="MoveStock/Move_Slot2/Area2D" to="MoveStock/Move_Slot2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MoveStock/Move_Slot2/Area2D" to="MoveStock/Move_Slot2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="MoveStock/Move_Slot3/Area2D" to="MoveStock/Move_Slot3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MoveStock/Move_Slot3/Area2D" to="MoveStock/Move_Slot3" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Reroll/Area2D" to="Reroll" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Reroll/Area2D" to="Reroll" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Reroll/Area2D" to="Reroll" method="_on_area_2d_mouse_exited"]

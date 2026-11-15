@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://bmpp7tq3ukn2x"]
+
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="1_66a07"]
+[ext_resource type="Script" uid="uid://qjfbium2xudf" path="res://ability_data.gd" id="1_e60ol"]
+
+[sub_resource type="Resource" id="Resource_1afhp"]
+script = ExtResource("1_e60ol")
+condition_type = 3
+condition_target = 4
+effect_target_type = 2
+effect_target = 2
+chance = 0.25
+stats_effect = Array[int]([2])
+modifier = Array[int]([1])
+metadata/_custom_type_script = "uid://qjfbium2xudf"
+
+[resource]
+script = ExtResource("1_66a07")
+id = "jay"
+name = "Jay"
+description = "Has a 25% chance to gain 1 bond with everyone at the end of each turn."
+colour = Color(0.22010711, 0.13350359, 0.03386601, 1)
+rarity = 1
+base_hp = 9
+starting_move = "friendship"
+ability = SubResource("Resource_1afhp")
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

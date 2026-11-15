@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://h5t2kq10rf1r"]
+
+[ext_resource type="Resource" uid="uid://djush8y2rqg00" path="res://abilities/dummy.tres" id="1_juby4"]
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="1_qjr4l"]
+
+[resource]
+script = ExtResource("1_qjr4l")
+id = "dummy"
+name = "Dummy"
+description = "50% chance to heal 1 hp at the end of every turn."
+colour = Color(0.6460287, 0.6460291, 0.6460287, 1)
+base_hp = 6
+starting_move = "tackle"
+ability = ExtResource("1_juby4")
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

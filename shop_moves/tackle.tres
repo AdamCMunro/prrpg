@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MoveData" format=3 uid="uid://d1cdgtth1kk4"]
+
+[ext_resource type="Script" uid="uid://d1wh1a0jbsv0y" path="res://move_data.gd" id="1_vtikt"]
+
+[resource]
+script = ExtResource("1_vtikt")
+id = "tackle"
+name = "Tackle"
+description = "Deal {dmg} damage to a single opponent"
+number_of_targets = 1
+target_type = 2
+base_dmg_target = 4
+base_acc = 0.75
+metadata/_custom_type_script = "uid://d1wh1a0jbsv0y"

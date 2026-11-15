@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://drea4x877276b"]
+
+[ext_resource type="Script" uid="uid://c17n3g4wgqei8" path="res://enemy_data.gd" id="1_hswee"]
+
+[resource]
+script = ExtResource("1_hswee")
+id = "test"
+name = "Godzilla"
+description = "He looks big and scary but honestly, he's pretty chill"
+base_hp = 10
+move_1 = "swipe"
+metadata/_custom_type_script = "uid://c17n3g4wgqei8"

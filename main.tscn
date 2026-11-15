@@ -1,0 +1,2380 @@
+[gd_scene format=3 uid="uid://c8lqnphlkt00j"]
+
+[ext_resource type="Script" uid="uid://dxlxb0k2nrtw3" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dhqjqy7y5by1h" path="res://squad.gd" id="2_h2yge"]
+[ext_resource type="Shader" uid="uid://d1wu66vbujyym" path="res://shaders/shine.gdshader" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://4vskome0a2fd" path="res://squad_slot.gd" id="3_h2yge"]
+[ext_resource type="FontFile" uid="uid://3yx1dvlngisr" path="res://fonts/Bungee-Regular.ttf" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://bndat0ihibsn" path="res://bond_bar.gd" id="6_5vw27"]
+[ext_resource type="PackedScene" uid="uid://coptewde702gd" path="res://fight.tscn" id="7_272bh"]
+[ext_resource type="Shader" uid="uid://b702xd6ldo6dm" path="res://shaders/effect.gdshader" id="7_kek77"]
+[ext_resource type="Script" uid="uid://6uh4ceebmanp" path="res://test_menu.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://mu3x1fvdrij" path="res://move_box.gd" id="8_dg77c"]
+[ext_resource type="Script" uid="uid://ctwwglult52m7" path="res://wallet.gd" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://d3pv8g70nrjev" path="res://shop.tscn" id="11_efxa6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("3_7mycd")
+shader_parameter/shine_color = Color(1, 1, 1, 0.25)
+shader_parameter/line_width = 0.1
+shader_parameter/angle = 0.7853982
+shader_parameter/speed = 1.0
+shader_parameter/wait_cycles = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_272bh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(0.81869304, 0.18459338, 0.6627502, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = ExtResource("7_kek77")
+shader_parameter/strength = 0.350000016625
+shader_parameter/speed = 1.50000007125
+shader_parameter/angle = 45.0000021375
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(39.999996, 39.999996)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(200, 75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
+shader = ExtResource("7_kek77")
+shader_parameter/strength = 0.30400001444
+shader_parameter/speed = 1.410000066975
+shader_parameter/angle = 127.53600605796
+
+[node name="Main" type="Node2D" unique_id=211947784]
+script = ExtResource("1_0xm2m")
+
+[node name="Squad" type="Node2D" parent="." unique_id=1445695362]
+visible = false
+script = ExtResource("2_h2yge")
+
+[node name="Squad_Slot" type="Node2D" parent="Squad" unique_id=1533777411]
+material = SubResource("ShaderMaterial_272bh")
+position = Vector2(130, 120)
+script = ExtResource("3_h2yge")
+metadata/_edit_group_ = true
+
+[node name="BondBar" type="Node2D" parent="Squad/Squad_Slot" unique_id=538958180]
+script = ExtResource("6_5vw27")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/BondBar" unique_id=66264426]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -89.0
+offset_right = 14.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Squad/Squad_Slot/BondBar" unique_id=1387062097]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -87.0
+offset_right = 12.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="Squad/Squad_Slot/BondBar" unique_id=1388775613]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -85.0
+offset_right = 10.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_272bh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5vw27")
+max_value = 8.0
+step = 0.1
+fill_mode = 3
+show_percentage = false
+
+[node name="DescriptionBox" type="Node2D" parent="Squad/Squad_Slot" unique_id=1990479061]
+visible = false
+position = Vector2(240, 0)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot/DescriptionBox" unique_id=1417755655]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/DescriptionBox" unique_id=6261875]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot/DescriptionBox" unique_id=282629313]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot/DescriptionBox" unique_id=467208357]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedDescriptionBox" type="Node2D" parent="Squad/Squad_Slot" unique_id=1603818193]
+visible = false
+position = Vector2(25, -215)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot/SelectedDescriptionBox" unique_id=1863179490]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/SelectedDescriptionBox" unique_id=1928105424]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot/SelectedDescriptionBox" unique_id=1189080293]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -93.5
+offset_right = 118.5
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot/SelectedDescriptionBox" unique_id=1518778074]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=796335410]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="FlashRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=283219729]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="EffectRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=1585811515]
+visible = false
+material = SubResource("ShaderMaterial_4c57u")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot" unique_id=1880758167]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot/Area2D" unique_id=1910062237]
+position = Vector2(5.722046e-06, 3.8146973e-06)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="NameLabel" type="Label" parent="Squad/Squad_Slot" unique_id=603851989]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="Squad/Squad_Slot" unique_id=898783857]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "x/x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StatusRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=461401362]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.49803922)
+
+[node name="DmgRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=381545325]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0.49803922)
+
+[node name="HealRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=844354763]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.49803922)
+
+[node name="ChargeRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=1391491558]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.958882, 0.6583885, 0, 0.49800003)
+
+[node name="StatusLabel" type="Label" parent="Squad/Squad_Slot" unique_id=1766866963]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -65.5
+offset_right = 85.5
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/line_spacing = -23
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 48
+text = "Turn
+Ended"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot" unique_id=1441732531]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot" unique_id=1859988509]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="SellButton" type="Node2D" parent="Squad/Squad_Slot" unique_id=1577219353]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/SellButton" unique_id=1868355386]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.29411766, 0.25490198, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="Squad/Squad_Slot/SellButton" unique_id=1512257857]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -38.5
+offset_right = 86.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveStuff" type="Node2D" parent="Squad/Squad_Slot" unique_id=703227297]
+visible = false
+
+[node name="MoveBox" type="Node2D" parent="Squad/Squad_Slot/MoveStuff" unique_id=1122479119]
+z_index = -1
+position = Vector2(215, -45)
+script = ExtResource("8_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/MoveStuff/MoveBox" unique_id=1377850813]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Squad/Squad_Slot/MoveStuff/MoveBox" unique_id=869084171]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.0
+offset_right = 100.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Move Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot/MoveStuff/MoveBox" unique_id=543414787]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot/MoveStuff/MoveBox" unique_id=1422047813]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot/MoveStuff/MoveBox" unique_id=782728181]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot/MoveStuff/MoveBox/Area2D" unique_id=2077139237]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="MoveBox2" type="Node2D" parent="Squad/Squad_Slot/MoveStuff" unique_id=2127634461]
+z_index = -1
+position = Vector2(215, 45)
+script = ExtResource("8_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/MoveStuff/MoveBox2" unique_id=1004353007]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Squad/Squad_Slot/MoveStuff/MoveBox2" unique_id=278909408]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.0
+offset_right = 100.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Move Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot/MoveStuff/MoveBox2" unique_id=1880611496]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot/MoveStuff/MoveBox2" unique_id=1307763590]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot/MoveStuff/MoveBox2" unique_id=481969778]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot/MoveStuff/MoveBox2/Area2D" unique_id=591235113]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="MoveDescriptionBox" type="Node2D" parent="Squad/Squad_Slot/MoveStuff" unique_id=1157737418]
+visible = false
+position = Vector2(455, 0)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot/MoveStuff/MoveDescriptionBox" unique_id=1483625275]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot/MoveStuff/MoveDescriptionBox" unique_id=8792464]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot/MoveStuff/MoveDescriptionBox" unique_id=31065350]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot/MoveStuff/MoveDescriptionBox" unique_id=1247528527]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1.0
+offset_top = 74.0
+offset_right = 119.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="Squad/Squad_Slot/MoveStuff/MoveDescriptionBox" unique_id=1974033956]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="Squad_Slot2" type="Node2D" parent="Squad" unique_id=2004653725]
+position = Vector2(130, 330)
+script = ExtResource("3_h2yge")
+metadata/_edit_group_ = true
+
+[node name="BondBar" type="Node2D" parent="Squad/Squad_Slot2" unique_id=1203621787]
+script = ExtResource("6_5vw27")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/BondBar" unique_id=257228722]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -89.0
+offset_right = 14.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Squad/Squad_Slot2/BondBar" unique_id=1147308748]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -87.0
+offset_right = 12.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="Squad/Squad_Slot2/BondBar" unique_id=549604336]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -85.0
+offset_right = 10.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_272bh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5vw27")
+max_value = 8.0
+step = 0.1
+fill_mode = 3
+show_percentage = false
+
+[node name="DescriptionBox" type="Node2D" parent="Squad/Squad_Slot2" unique_id=1427649534]
+visible = false
+position = Vector2(240, 0)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot2/DescriptionBox" unique_id=845065281]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/DescriptionBox" unique_id=921371429]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/DescriptionBox" unique_id=1722572950]
+offset_left = -117.0
+offset_top = -92.0
+offset_right = 118.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/DescriptionBox" unique_id=1416465604]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedDescriptionBox" type="Node2D" parent="Squad/Squad_Slot2" unique_id=1227529226]
+visible = false
+position = Vector2(25, -215)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot2/SelectedDescriptionBox" unique_id=1042553893]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/SelectedDescriptionBox" unique_id=1230111906]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/SelectedDescriptionBox" unique_id=1502874115]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -93.5
+offset_right = 118.5
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/SelectedDescriptionBox" unique_id=728370749]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=2123765507]
+material = SubResource("ShaderMaterial_0xm2m")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="FlashRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=1366271165]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="EffectRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=359175312]
+visible = false
+material = SubResource("ShaderMaterial_4c57u")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot2" unique_id=1770981151]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot2/Area2D" unique_id=1987739580]
+position = Vector2(5.722046e-06, 3.8146973e-06)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="NameLabel" type="Label" parent="Squad/Squad_Slot2" unique_id=1172212618]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="Squad/Squad_Slot2" unique_id=2058587796]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "x/x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StatusRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=2084961049]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.49803922)
+
+[node name="DmgRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=781814679]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0.49803922)
+
+[node name="HealRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=557234389]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.49803922)
+
+[node name="ChargeRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=849789417]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.958882, 0.6583885, 0, 0.49800003)
+
+[node name="StatusLabel" type="Label" parent="Squad/Squad_Slot2" unique_id=378818985]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -65.5
+offset_right = 85.5
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/line_spacing = -23
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 48
+text = "Turn
+Ended"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot2" unique_id=2139222409]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot2" unique_id=926317316]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="SellButton" type="Node2D" parent="Squad/Squad_Slot2" unique_id=49013542]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/SellButton" unique_id=1523740483]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.29411766, 0.25490198, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="Squad/Squad_Slot2/SellButton" unique_id=1873252224]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -38.5
+offset_right = 86.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveStuff" type="Node2D" parent="Squad/Squad_Slot2" unique_id=22252629]
+visible = false
+
+[node name="MoveBox" type="Node2D" parent="Squad/Squad_Slot2/MoveStuff" unique_id=1922291617]
+z_index = -1
+position = Vector2(215, -45)
+script = ExtResource("8_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/MoveStuff/MoveBox" unique_id=826490584]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Squad/Squad_Slot2/MoveStuff/MoveBox" unique_id=1962546183]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.0
+offset_right = 100.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Move Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot2/MoveStuff/MoveBox" unique_id=679376961]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot2/MoveStuff/MoveBox" unique_id=19418457]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot2/MoveStuff/MoveBox" unique_id=1356899807]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot2/MoveStuff/MoveBox/Area2D" unique_id=1199113426]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="MoveBox2" type="Node2D" parent="Squad/Squad_Slot2/MoveStuff" unique_id=1813037340]
+z_index = -1
+position = Vector2(215, 45)
+script = ExtResource("8_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/MoveStuff/MoveBox2" unique_id=183126664]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Squad/Squad_Slot2/MoveStuff/MoveBox2" unique_id=1282687657]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.0
+offset_right = 100.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Move Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot2/MoveStuff/MoveBox2" unique_id=113208240]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot2/MoveStuff/MoveBox2" unique_id=1467776568]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot2/MoveStuff/MoveBox2" unique_id=1118541523]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot2/MoveStuff/MoveBox2/Area2D" unique_id=1146212576]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="MoveDescriptionBox" type="Node2D" parent="Squad/Squad_Slot2/MoveStuff" unique_id=956301987]
+visible = false
+position = Vector2(455, 0)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot2/MoveStuff/MoveDescriptionBox" unique_id=2142803924]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot2/MoveStuff/MoveDescriptionBox" unique_id=1204481420]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/MoveStuff/MoveDescriptionBox" unique_id=864806123]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/MoveStuff/MoveDescriptionBox" unique_id=1342802876]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1.0
+offset_top = 74.0
+offset_right = 119.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="Squad/Squad_Slot2/MoveStuff/MoveDescriptionBox" unique_id=1041221901]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="Squad_Slot3" type="Node2D" parent="Squad" unique_id=1067845740]
+position = Vector2(130, 540)
+script = ExtResource("3_h2yge")
+metadata/_edit_group_ = true
+
+[node name="BondBar" type="Node2D" parent="Squad/Squad_Slot3" unique_id=1826364508]
+script = ExtResource("6_5vw27")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/BondBar" unique_id=853321747]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -89.0
+offset_right = 14.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Squad/Squad_Slot3/BondBar" unique_id=899188459]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -87.0
+offset_right = 12.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="Squad/Squad_Slot3/BondBar" unique_id=1449755290]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -85.0
+offset_right = 10.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_272bh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5vw27")
+max_value = 8.0
+step = 0.1
+fill_mode = 3
+show_percentage = false
+
+[node name="DescriptionBox" type="Node2D" parent="Squad/Squad_Slot3" unique_id=714792883]
+visible = false
+position = Vector2(240, 0)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot3/DescriptionBox" unique_id=740032883]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/DescriptionBox" unique_id=1741370488]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/DescriptionBox" unique_id=1552025521]
+offset_left = -117.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/DescriptionBox" unique_id=359646168]
+material = SubResource("ShaderMaterial_kek77")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedDescriptionBox" type="Node2D" parent="Squad/Squad_Slot3" unique_id=306475818]
+visible = false
+position = Vector2(25, -215)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot3/SelectedDescriptionBox" unique_id=840215701]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/SelectedDescriptionBox" unique_id=2114746022]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/SelectedDescriptionBox" unique_id=1621386079]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -93.5
+offset_right = 118.5
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/SelectedDescriptionBox" unique_id=973849011]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 60.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=1033892248]
+material = SubResource("ShaderMaterial_0xm2m")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="FlashRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=1534507868]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="EffectRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=58385555]
+visible = false
+material = SubResource("ShaderMaterial_4c57u")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(1, 1, 1, 0.48235294)
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot3" unique_id=1527978946]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot3/Area2D" unique_id=1641775245]
+position = Vector2(5.722046e-06, 3.8146973e-06)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="NameLabel" type="Label" parent="Squad/Squad_Slot3" unique_id=1339255203]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="Squad/Squad_Slot3" unique_id=931196736]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 95.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "x/x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StatusRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=1294975010]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.49803922)
+
+[node name="DmgRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=27738513]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0.49803922)
+
+[node name="HealRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=544547934]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.49803922)
+
+[node name="ChargeRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=1115740576]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.958882, 0.6583885, 0, 0.49800003)
+
+[node name="StatusLabel" type="Label" parent="Squad/Squad_Slot3" unique_id=820772663]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -65.5
+offset_right = 85.5
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/line_spacing = -23
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 48
+text = "Turn
+Ended"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot3" unique_id=1081372997]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot3" unique_id=536241419]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -100.0
+offset_right = 1.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+vertical_alignment = 1
+
+[node name="SellButton" type="Node2D" parent="Squad/Squad_Slot3" unique_id=1647817506]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/SellButton" unique_id=20553511]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.29411766, 0.25490198, 0.39215687)
+
+[node name="ValueLabel" type="Label" parent="Squad/Squad_Slot3/SellButton" unique_id=995364433]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -38.5
+offset_right = 86.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 48
+text = "£XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveStuff" type="Node2D" parent="Squad/Squad_Slot3" unique_id=1900122949]
+visible = false
+
+[node name="MoveBox" type="Node2D" parent="Squad/Squad_Slot3/MoveStuff" unique_id=1236217706]
+z_index = -1
+position = Vector2(215, -45)
+script = ExtResource("8_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/MoveStuff/MoveBox" unique_id=771701091]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Squad/Squad_Slot3/MoveStuff/MoveBox" unique_id=167909088]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.0
+offset_right = 100.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Move Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot3/MoveStuff/MoveBox" unique_id=1496477222]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot3/MoveStuff/MoveBox" unique_id=583488414]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot3/MoveStuff/MoveBox" unique_id=172629083]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot3/MoveStuff/MoveBox/Area2D" unique_id=559474465]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="MoveBox2" type="Node2D" parent="Squad/Squad_Slot3/MoveStuff" unique_id=444271331]
+z_index = -1
+position = Vector2(215, 45)
+script = ExtResource("8_dg77c")
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/MoveStuff/MoveBox2" unique_id=989516391]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Squad/Squad_Slot3/MoveStuff/MoveBox2" unique_id=1704368413]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.0
+offset_right = 100.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Move Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EmptyRect" type="ColorRect" parent="Squad/Squad_Slot3/MoveStuff/MoveBox2" unique_id=1224256972]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -37.5
+offset_right = 100.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="EmptyLabel" type="Label" parent="Squad/Squad_Slot3/MoveStuff/MoveBox2" unique_id=1529877642]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 24
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Squad/Squad_Slot3/MoveStuff/MoveBox2" unique_id=4344937]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Squad/Squad_Slot3/MoveStuff/MoveBox2/Area2D" unique_id=1324965063]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="MoveDescriptionBox" type="Node2D" parent="Squad/Squad_Slot3/MoveStuff" unique_id=1310641891]
+visible = false
+position = Vector2(455, 0)
+
+[node name="BorderRect" type="ColorRect" parent="Squad/Squad_Slot3/MoveStuff/MoveDescriptionBox" unique_id=1779475737]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Squad/Squad_Slot3/MoveStuff/MoveDescriptionBox" unique_id=660263070]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DescLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/MoveStuff/MoveDescriptionBox" unique_id=1170060459]
+offset_left = -118.0
+offset_top = -92.0
+offset_right = 117.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -9
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RarityLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/MoveStuff/MoveDescriptionBox" unique_id=856240892]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1.0
+offset_top = 74.0
+offset_right = 119.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "[wave freq=3.5 amp=10 connected=0]Rarity[/wave]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AccLabel" type="RichTextLabel" parent="Squad/Squad_Slot3/MoveStuff/MoveDescriptionBox" unique_id=1186369426]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 74.0
+offset_right = 2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+bbcode_enabled = true
+text = "Acc XX%"
+vertical_alignment = 1
+
+[node name="Wallet" type="Node2D" parent="." unique_id=417170600]
+visible = false
+position = Vector2(1800, 50)
+script = ExtResource("10_4c57u")
+metadata/_edit_group_ = true
+
+[node name="BorderRect" type="ColorRect" parent="Wallet" unique_id=528422426]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -35.0
+offset_right = 105.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Wallet" unique_id=718838265]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -30.0
+offset_right = 100.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="RichTextLabel" parent="Wallet" unique_id=2117949980]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.7233747, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_1bvp3")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "£XXXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProfitIndicator" type="Node2D" parent="Wallet" unique_id=1540202303]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Wallet/ProfitIndicator" unique_id=149952532]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LossIndicator" type="Node2D" parent="Wallet" unique_id=499446179]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Wallet/LossIndicator" unique_id=606026965]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fight" parent="." unique_id=220432436 instance=ExtResource("7_272bh")]
+visible = false
+
+[node name="TestMenu" type="Node2D" parent="." unique_id=148214588]
+position = Vector2(960, 540)
+script = ExtResource("8_5vw27")
+
+[node name="Button" type="Button" parent="TestMenu" unique_id=1489505767]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -55.0
+offset_right = 150.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 28
+text = "Start New Run"
+
+[node name="Button2" type="Button" parent="TestMenu" unique_id=1921151853]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 55.0
+offset_right = 150.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 28
+text = "Go to the shop"
+
+[node name="Shop" parent="." unique_id=195803899 instance=ExtResource("11_efxa6")]
+visible = false
+
+[connection signal="input_event" from="Squad/Squad_Slot/Area2D" to="Squad/Squad_Slot" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot/Area2D" to="Squad/Squad_Slot" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot/Area2D" to="Squad/Squad_Slot" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot/MoveStuff/MoveBox/Area2D" to="Squad/Squad_Slot/MoveStuff/MoveBox" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot/MoveStuff/MoveBox/Area2D" to="Squad/Squad_Slot/MoveStuff/MoveBox" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot/MoveStuff/MoveBox2/Area2D" to="Squad/Squad_Slot/MoveStuff/MoveBox2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot/MoveStuff/MoveBox2/Area2D" to="Squad/Squad_Slot/MoveStuff/MoveBox2" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Squad/Squad_Slot2/Area2D" to="Squad/Squad_Slot2" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot2/Area2D" to="Squad/Squad_Slot2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot2/Area2D" to="Squad/Squad_Slot2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot2/MoveStuff/MoveBox/Area2D" to="Squad/Squad_Slot2/MoveStuff/MoveBox" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot2/MoveStuff/MoveBox/Area2D" to="Squad/Squad_Slot2/MoveStuff/MoveBox" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot2/MoveStuff/MoveBox2/Area2D" to="Squad/Squad_Slot2/MoveStuff/MoveBox2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot2/MoveStuff/MoveBox2/Area2D" to="Squad/Squad_Slot2/MoveStuff/MoveBox2" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Squad/Squad_Slot3/Area2D" to="Squad/Squad_Slot3" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot3/Area2D" to="Squad/Squad_Slot3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot3/Area2D" to="Squad/Squad_Slot3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot3/MoveStuff/MoveBox/Area2D" to="Squad/Squad_Slot3/MoveStuff/MoveBox" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot3/MoveStuff/MoveBox/Area2D" to="Squad/Squad_Slot3/MoveStuff/MoveBox" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Squad/Squad_Slot3/MoveStuff/MoveBox2/Area2D" to="Squad/Squad_Slot3/MoveStuff/MoveBox2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Squad/Squad_Slot3/MoveStuff/MoveBox2/Area2D" to="Squad/Squad_Slot3/MoveStuff/MoveBox2" method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="TestMenu/Button" to="TestMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="TestMenu/Button2" to="TestMenu" method="_on_button_2_pressed"]

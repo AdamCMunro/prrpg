@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MoveData" format=3 uid="uid://dfr5ste70l684"]
+
+[ext_resource type="Script" uid="uid://d1wh1a0jbsv0y" path="res://move_data.gd" id="1_ptoik"]
+
+[resource]
+script = ExtResource("1_ptoik")
+id = "friendship"
+name = "Friendship"
+description = "Spend 2 bond and heal everyone on the squad for 3 hp"
+rarity = 1
+number_of_targets = 3
+target_type = 1
+base_dmg_target = -3
+base_acc = 1.0
+bond_target = 1
+min_bond = 2
+bond_cost = 2
+metadata/_custom_type_script = "uid://d1wh1a0jbsv0y"

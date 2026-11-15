@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MoveData" format=3 uid="uid://bde1byv8lx8li"]
+
+[ext_resource type="Script" uid="uid://d1wh1a0jbsv0y" path="res://move_data.gd" id="1_5rnik"]
+
+[resource]
+script = ExtResource("1_5rnik")
+id = "zink_uyah"
+name = "Zink Uyah!"
+description = "A skilled technique, has a 20% chance to stun. Deals {dmg} damage."
+rarity = 3
+number_of_targets = 1
+target_type = 2
+base_dmg_target = 5
+base_acc = 0.9
+metadata/_custom_type_script = "uid://d1wh1a0jbsv0y"

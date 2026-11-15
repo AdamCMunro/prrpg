@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://bcftxihv6x6kd"]
+
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="1_bps6e"]
+
+[resource]
+script = ExtResource("1_bps6e")
+id = "mcfly"
+name = "mcfly"
+description = "He's outtatime"
+colour = Color(0.8472311, 0, 0.30943933, 1)
+rarity = 3
+base_hp = 11
+starting_move = "the_power_of_love"
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

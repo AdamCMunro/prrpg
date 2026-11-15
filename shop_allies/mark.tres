@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://d181fjwmnpvok"]
+
+[ext_resource type="Resource" uid="uid://bsd38i4ths74d" path="res://abilities/invincible.tres" id="1_rxwg4"]
+[ext_resource type="Script" uid="uid://bfs65rtruvimy" path="res://ally_data.gd" id="2_4qx52"]
+
+[resource]
+script = ExtResource("2_4qx52")
+id = "mark"
+name = "mark"
+description = "When this ally is damaged, their dmg mod increases by 1, permanently. {buff}"
+colour = Color(0.39607844, 0.7411765, 1, 1)
+rarity = 3
+base_hp = 10
+starting_move = "pulled_punch"
+ability = ExtResource("1_rxwg4")
+metadata/_custom_type_script = "uid://bfs65rtruvimy"

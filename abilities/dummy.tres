@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityData" format=3 uid="uid://djush8y2rqg00"]
+
+[ext_resource type="Script" uid="uid://qjfbium2xudf" path="res://ability_data.gd" id="1_kvvtp"]
+
+[resource]
+script = ExtResource("1_kvvtp")
+condition_type = 3
+condition_target = 4
+effect_target = 2
+chance = 0.5
+stats_effect = Array[int]([1])
+modifier = Array[int]([1])
+metadata/_custom_type_script = "uid://qjfbium2xudf"
