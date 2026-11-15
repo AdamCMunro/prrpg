@@ -100,6 +100,7 @@ func _on_area_2d_mouse_exited() -> void:
 	$DescriptionBox.visible = false
 	$SelectedDescriptionBox.visible = false
 	$SellButton.visible = false
+	$SellButton/ValueLabel.text = "£" + str(sell_value)
 	z_index = 0
 	if !action_box.info_hidden:
 		target.visible = false
@@ -139,7 +140,10 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			if !is_selected and action_box.info_hidden and !turn_ended and !get_parent().in_shop:
 				_select()
 			if get_parent().in_shop:
-				_sell()
+				if $SellButton/ValueLabel.text != "sell?":
+					$SellButton/ValueLabel.text = "sell?"
+				else:
+					_sell()
 				
 func _sell():
 	var wallet = get_parent().get_parent().get_node("Wallet")

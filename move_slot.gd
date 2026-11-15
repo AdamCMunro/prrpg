@@ -24,8 +24,11 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed() && not event.is_echo():
 			if !is_empty:
-				if buy_value <= get_parent().get_parent().wallet.balance:
-							_buy()
+				if $BuyButton/ValueLabel.text != "buy?":
+					$BuyButton/ValueLabel.text = "buy?"
+				else:
+					if buy_value <= get_parent().get_parent().wallet.balance:
+						_buy()
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
@@ -38,6 +41,7 @@ func _on_area_2d_mouse_exited() -> void:
 	$DescriptionBox.visible = false
 	$BuyButton.visible = false
 	$NameLabel.visible = true
+	$BuyButton/ValueLabel.text = "£" + str(buy_value)
 
 func _buy():
 	var wallet = get_parent().get_parent().wallet

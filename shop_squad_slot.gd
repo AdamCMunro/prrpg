@@ -26,12 +26,15 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed() && not event.is_echo():
 			if !is_empty:
-				if buy_value <= get_parent().get_parent().wallet.balance:
-					var squad_slot_arr = get_parent().get_parent().get_parent().get_node("Squad").squad_slot_arr
-					for i in range(squad_slot_arr.size()):
-						if squad_slot_arr[i].is_empty:
-							_buy(squad_slot_arr[i], i)
-							return
+				if $BuyButton/ValueLabel.text != "buy?":
+					$BuyButton/ValueLabel.text = "buy?"
+				else:
+					if buy_value <= get_parent().get_parent().wallet.balance:
+						var squad_slot_arr = get_parent().get_parent().get_parent().get_node("Squad").squad_slot_arr
+						for i in range(squad_slot_arr.size()):
+							if squad_slot_arr[i].is_empty:
+								_buy(squad_slot_arr[i], i)
+								return
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over = true
@@ -43,6 +46,7 @@ func _on_area_2d_mouse_exited() -> void:
 	$DescriptionBox.visible = false
 	$MoveDescriptionBox.visible = false
 	$BuyButton.visible = false
+	$BuyButton/ValueLabel.text = "£" + str(buy_value)
 
 func _buy(slot, i):
 	var wallet = get_parent().get_parent().wallet

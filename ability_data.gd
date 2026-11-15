@@ -21,6 +21,8 @@ enum ConditionType
 	BOUGHT,
 	SOLD,
 	MISSED,
+	MAX_HEALTH,
+	MAX_TENSION
 }
 
 enum ConditionTarget
@@ -299,6 +301,10 @@ func _get_condition_type(con : ConditionType) -> String:
 			return "SOLD"
 		ConditionType.MISSED:
 			return "MISSED"	
+		ConditionType.MAX_HEALTH:
+			return "MAX_HEALTH"
+		ConditionType.MAX_TENSION:
+			return "MAX_TENSION"
 		
 	
 	return ""
